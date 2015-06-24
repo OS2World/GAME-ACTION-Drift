@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+(2002/04/23)
+
+
+According to the author the header file get lost but it can be reconstructed easily. 
+
+Drift for OS/2 is now released under the GNU GPL License.
+
+Thanks to the Author for this.
+
+Martin Iturbide
+martin@os2world.com
+
+http://www.os2world.com/games
+
+---------------------------------------------------------------------------------
