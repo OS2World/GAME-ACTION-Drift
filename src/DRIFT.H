@@ -49,6 +49,8 @@
 #define IDM_LANG_DE     304
 #define IDM_LANG_FR     305
 #define IDM_LANG_IT     306
+#define IDM_BACKGRND    307
+#define IDM_FRAME_CTRL  308
 
 /* Submenu item IDs — needed to locate submenu HWNDs at runtime */
 #define IDM_SUBMENU_GAME      1000
@@ -98,7 +100,9 @@
 #define STR_KEY_LEFT     29
 #define STR_KEY_RIGHT    30
 #define STR_KEY_SPACE    31
-#define NUM_STRINGS      32
+#define STR_BACKGRND     32
+#define STR_FRAME_CTRL   33
+#define NUM_STRINGS      34
 
 extern int current_lang;
 extern const char *lang_strings[6][NUM_STRINGS];

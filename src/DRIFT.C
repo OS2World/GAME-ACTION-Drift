@@ -15,7 +15,7 @@ int current_lang = LANG_EN;
 
 const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_EN */
-        "~Game", "~Play", "~Pauze", "~Quit game", "E~xit  Ctrl+X",
+        "~Game", "~Play", "~Pause Game\tCtrl+P", "~Quit game", "E~xit\tCtrl+X",
         "~Options", "~Detail", "~High", "~Medium", "~Low",
         "~Language", "~Save settings on exit", "~Help", "~About Drift...",
         "sattelite madness", "Go Polygunzz", "Asteroid factory",
@@ -29,10 +29,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "UP                     Thrust",
         "LEFT                Turn left",
         "RIGHT              Turn right",
-        "SPACE            Fire missile"
+        "SPACE            Fire missile",
+        "~Background Run\tCtrl+B",
+        "~Frame Controls\tCtrl+F"
     },
     { /* LANG_ES */
-        "~Juego", "~Jugar", "~Pausar", "~Salir del juego", "E~xit  Ctrl+X",
+        "~Juego", "~Jugar", "~Pausar Juego\tCtrl+P", "~Salir del juego", "~Salir\tCtrl+X",
         "~Opciones", "~Detalle", "~Alto", "~Medio", "~Bajo",
         "~Idioma", "~Guardar ajustes al salir", "~Ayuda", "~Acerca de Drift...",
         "locura satelital", "Vamos Polygunzz", "Fabrica de asteroides",
@@ -46,10 +48,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "ARRIBA               Empuje",
         "IZQUIERDA         Girar izq.",
         "DERECHA            Girar der.",
-        "ESPACIO              Disparar"
+        "ESPACIO              Disparar",
+        "~Fondo Activo\tCtrl+B",
+        "~Marco\tCtrl+F"
     },
     { /* LANG_NL */
-        "~Spel", "~Spelen", "~Pauze", "Spel ~verlaten", "~Afsluiten  Ctrl+X",
+        "~Spel", "~Spelen", "~Pauze Spel\tCtrl+P", "Spel ~verlaten", "~Afsluiten\tCtrl+X",
         "~Opties", "~Detail", "~Hoog", "~Middel", "~Laag",
         "~Taal", "~Instellingen opslaan bij afsluiten", "~Help", "~Over Drift...",
         "satelliet waanzin", "Ga Polygunzz", "Asteroide fabriek",
@@ -63,10 +67,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "OMHOOG              Stuwkracht",
         "LINKS              Links draaien",
         "RECHTS           Rechts draaien",
-        "SPATIE               Vuur raket"
+        "SPATIE               Vuur raket",
+        "~Achtergrond\tCtrl+B",
+        "~Frame besturing\tCtrl+F"
     },
     { /* LANG_DE */
-        "~Spiel", "~Spielen", "~Pause", "Spiel ~beenden", "~Beenden  Ctrl+X",
+        "~Spiel", "~Spielen", "~Pause Spiel\tCtrl+P", "Spiel ~beenden", "~Beenden\tCtrl+X",
         "~Optionen", "~Detail", "~Hoch", "~Mittel", "~Niedrig",
         "~Sprache", "~Einstellungen beim Beenden speichern", "~Hilfe", "~Ueber Drift...",
         "Satelliten-Wahnsinn", "Los Polygunzz", "Asteroiden-Fabrik",
@@ -80,10 +86,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "HOCH                      Schub",
         "LINKS               Links drehen",
         "RECHTS            Rechts drehen",
-        "LEERTASTE               Feuer"
+        "LEERTASTE               Feuer",
+        "~Hintergrundlauf\tCtrl+B",
+        "~Rahmensteuerung\tCtrl+F"
     },
     { /* LANG_FR */
-        "~Jeu", "~Jouer", "~Pause", "~Quitter le jeu", "~Exit  Ctrl+X",
+        "~Jeu", "~Jouer", "~Pause Jeu\tCtrl+P", "~Quitter le jeu", "~Quitter\tCtrl+X",
         "~Options", "~Detail", "~Haut", "~Moyen", "~Bas",
         "~Langue", "~Sauvegarder les reglages a la sortie", "~Aide", "~A propos de Drift...",
         "folie des satellites", "Allez les Polygunzz", "Usine a asteroides",
@@ -97,10 +105,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "HAUT                    Poussee",
         "GAUCHE            Tourner gauche",
         "DROITE             Tourner droite",
-        "ESPACE              Tirer missile"
+        "ESPACE              Tirer missile",
+        "~Arriere-plan Actif\tCtrl+B",
+        "~Cadre\tCtrl+F"
     },
     { /* LANG_IT */
-        "~Gioco", "~Gioca", "~Pausa", "~Esci dal gioco", "Es~ci  Ctrl+X",
+        "~Gioco", "~Gioca", "~Pausa Gioco\tCtrl+P", "~Esci dal gioco", "Es~ci\tCtrl+X",
         "~Opzioni", "~Dettaglio", "~Alta", "~Media", "~Bassa",
         "~Lingua", "~Salva impostazioni all'uscita", "~Aiuto", "~Informazioni su Drift...",
         "follia satellitare", "Forza Polygunzz", "Fabbrica di asteroidi",
@@ -114,7 +124,9 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "SU                          Spinta",
         "SINISTRA          Svolta sinistra",
         "DESTRA               Svolta destra",
-        "SPAZIO              Lancia missile"
+        "SPAZIO              Lancia missile",
+        "~Sfondo Attivo\tCtrl+B",
+        "~Controlli Cornice\tCtrl+F"
     }
 };
 
@@ -156,7 +168,9 @@ void set_language(HWND hMenu, int lang)
         hDetail = get_submenu(hOptions, IDM_SUBMENU_DETAIL);
         menu_set_text(hOptions, IDM_SUBMENU_DETAIL,   tr(STR_DETAIL));
         menu_set_text(hOptions, IDM_SUBMENU_LANGUAGE, tr(STR_LANGUAGE));
-        menu_set_text(hOptions, IDM_SAVEONEXIT,       tr(STR_SAVEONEXIT));
+        menu_set_text(hOptions, IDM_SAVEONEXIT,    tr(STR_SAVEONEXIT));
+        menu_set_text(hOptions, IDM_BACKGRND,      tr(STR_BACKGRND));
+        menu_set_text(hOptions, IDM_FRAME_CTRL,    tr(STR_FRAME_CTRL));
         if (hDetail) {
             menu_set_text(hDetail, IDM_HIGHDET,   tr(STR_DETAIL_HIGH));
             menu_set_text(hDetail, IDM_MEDIUMDET, tr(STR_DETAIL_MEDIUM));
@@ -230,6 +244,7 @@ char szProgName[]="DriftOS2";
 
 int detaillevel = IDM_HIGHDET;
 int saveonexit = TRUE;
+int bBackgrndRun = FALSE;
 
 extern OBJEKT* ship;
 
@@ -268,6 +283,7 @@ static ULONG flFrameFlags = 	FCF_TITLEBAR 			|
                               FCF_MENU 					|
 															FCF_SHELLPOSITION |
                               FCF_ACCELTABLE    |
+                              FCF_ICON          |
                               FCF_TASKLIST;
 
 hab = WinInitialize(0L);
@@ -349,6 +365,11 @@ MRESULT EXPENTRY ClientWndProc(HWND hwnd,ULONG messg,MPARAM mp1,MPARAM mp2)
 {
 HPS         hps;
 static HWND hMenu;
+static HWND hwndTitleBar = NULLHANDLE;
+static HWND hwndSysMenu  = NULLHANDLE;
+static HWND hwndMinMax   = NULLHANDLE;
+static BOOL bFrameHidden = FALSE;
+static BOOL bFocusPaused = FALSE;
 RECTL       rc;
 static INT xView, yView;
 int count,zoom,tel;
@@ -379,6 +400,9 @@ switch (messg)
 						// initialize the settings
             //hMenu=WinQueryWindow(hwnd,QW_PARENT);
 						hMenu=WinWindowFromID(WinQueryWindow(hwnd,QW_PARENT),FID_MENU);
+						hwndTitleBar = WinWindowFromID(WinQueryWindow(hwnd,QW_PARENT), FID_TITLEBAR);
+						hwndSysMenu  = WinWindowFromID(WinQueryWindow(hwnd,QW_PARENT), FID_SYSMENU);
+						hwndMinMax   = WinWindowFromID(WinQueryWindow(hwnd,QW_PARENT), FID_MINMAX);
 						// uncheck detaillevel
 						stat = WinCheckMenuItem(hMenu,detaillevel,FALSE);
             // uncheck save on exit
@@ -506,6 +530,24 @@ switch (messg)
 											}
 								return(DefWindowProc(hwnd,messg,mp1,mp2));*/
 								break;
+		 case WM_SETFOCUS:
+								if (!SHORT1FROMMP(mp2)) { /* losing focus */
+									if (!bBackgrndRun && game_status == GAME_PLAYING && !game_pauze) {
+										WinStopTimer(hab, hwndClient, idTimer);
+										game_pauze = TRUE;
+										WinCheckMenuItem(hMenu, IDM_PAUZE, TRUE);
+										bFocusPaused = TRUE;
+									}
+								} else { /* gaining focus */
+									if (bFocusPaused && game_status == GAME_PLAYING && game_pauze) {
+										game_pauze = FALSE;
+										idTimer = WinStartTimer(hab, hwndClient, ID_TIMER, 30);
+										WinCheckMenuItem(hMenu, IDM_PAUZE, FALSE);
+										WinInvalidateRect(hwnd, NULL, TRUE);
+									}
+									bFocusPaused = FALSE;
+								}
+								break;
 		 case WM_COMMAND:
 								switch (COMMANDMSG(&messg)->cmd)
 									{
@@ -624,6 +666,31 @@ switch (messg)
 									case IDM_LANG_DE: set_language(hMenu, LANG_DE); break;
 									case IDM_LANG_FR: set_language(hMenu, LANG_FR); break;
 									case IDM_LANG_IT: set_language(hMenu, LANG_IT); break;
+									case IDM_BACKGRND:
+																bBackgrndRun = !bBackgrndRun;
+																stat = WinCheckMenuItem(hMenu, IDM_BACKGRND, bBackgrndRun);
+																break;
+									case IDM_FRAME_CTRL:
+																if (!bFrameHidden) {
+																	WinSetParent(hwndTitleBar, HWND_OBJECT, FALSE);
+																	WinSetParent(hwndSysMenu,  HWND_OBJECT, FALSE);
+																	WinSetParent(hwndMinMax,   HWND_OBJECT, FALSE);
+																	WinSetParent(hMenu,        HWND_OBJECT, FALSE);
+																	WinSendMsg(hwndMain, WM_UPDATEFRAME,
+																		(MPARAM)(FCF_TITLEBAR | FCF_SYSMENU | FCF_MINMAX | FCF_MENU), NULL);
+																	bFrameHidden = TRUE;
+																} else {
+																	WinSetParent(hwndTitleBar, hwndMain, FALSE);
+																	WinSetParent(hwndSysMenu,  hwndMain, FALSE);
+																	WinSetParent(hwndMinMax,   hwndMain, FALSE);
+																	WinSetParent(hMenu,        hwndMain, FALSE);
+																	WinSendMsg(hwndMain, WM_UPDATEFRAME,
+																		(MPARAM)(FCF_TITLEBAR | FCF_SYSMENU | FCF_MINMAX | FCF_MENU), NULL);
+																	WinInvalidateRect(hwnd, NULL, FALSE);
+																	bFrameHidden = FALSE;
+																}
+																stat = WinCheckMenuItem(hMenu, IDM_FRAME_CTRL, bFrameHidden);
+																break;
 									default:    break;
 									}
 									break;
