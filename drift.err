@@ -1,0 +1,3 @@
+src\drift.c(355): Warning! W202: Symbol 'tmpangle' has been defined, but not referenced
+src\drift.c(358): Warning! W202: Symbol 'ptl' has been defined, but not referenced
+src\drift.c(10): Warning! W202: Symbol 'bldlevel' has been defined, but not referenced

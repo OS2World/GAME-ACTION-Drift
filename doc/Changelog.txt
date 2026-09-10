@@ -1,0 +1,17 @@
+1.03 (2026-09-09)
+- Compiled with Open Watcom C/C++ (wcc386)
+- Added Ctrl+X accelerator to exit the game immediately
+- Window size enforced to 1024x768 (centered; shrinks to screen if smaller)
+- Added .def file and BLDLEVEL string (readable by bldlevel.exe on OS/2)
+- Moved "Detail" submenu inside "Options" menu
+- Added "Language" submenu to Options: English, Spanish, Dutch, German,
+  French, Italian; all menu text and in-game messages switch at runtime
+- Language selection persisted in Driftos2.cfg
+- Source code reorganized: sources in /src, binaries output to /bin
+- Build system: makefile.wat (wmake) and compile-wat.cmd added
+
+2002-04-23
+- Released as Open Source under the GPL or later license
+
+1.02beta (1995)
+- Freeware release by Dirk Vandenheuvel

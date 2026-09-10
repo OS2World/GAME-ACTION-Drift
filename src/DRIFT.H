@@ -4,9 +4,20 @@
 #include <os2.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <alloc.h>
+#include <malloc.h>
+
+/* Borland C compat for Open Watcom */
+#ifndef random
+#define random(n)   (rand() % (n))
+#endif
+#ifndef randomize
+#define randomize() srand((unsigned)time(NULL))
+#endif
 #include <string.h>
 #include <math.h>
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 #include <time.h>
 #include <stdarg.h>
 #include <ctype.h>
@@ -31,6 +42,69 @@
 #define  IDM_ABOUT	    999
 
 #define IDD_HISCORE     300   // the hiscore string ID
+
+#define IDM_LANG_EN     301
+#define IDM_LANG_ES     302
+#define IDM_LANG_NL     303
+#define IDM_LANG_DE     304
+#define IDM_LANG_FR     305
+#define IDM_LANG_IT     306
+
+/* Submenu item IDs — needed to locate submenu HWNDs at runtime */
+#define IDM_SUBMENU_GAME      1000
+#define IDM_SUBMENU_OPTIONS   1001
+#define IDM_SUBMENU_HELP      1002
+#define IDM_SUBMENU_DETAIL    1010
+#define IDM_SUBMENU_LANGUAGE  1011
+
+/* Language codes */
+#define LANG_EN  0
+#define LANG_ES  1
+#define LANG_NL  2
+#define LANG_DE  3
+#define LANG_FR  4
+#define LANG_IT  5
+
+/* String table indices */
+#define STR_GAME          0
+#define STR_PLAY          1
+#define STR_PAUZE         2
+#define STR_QUITGAME      3
+#define STR_EXIT          4
+#define STR_OPTIONS       5
+#define STR_DETAIL        6
+#define STR_DETAIL_HIGH   7
+#define STR_DETAIL_MEDIUM 8
+#define STR_DETAIL_LOW    9
+#define STR_LANGUAGE     10
+#define STR_SAVEONEXIT   11
+#define STR_HELP         12
+#define STR_ABOUT        13
+#define STR_SAT_MADNESS  14
+#define STR_POLYGUNZZ    15
+#define STR_ASTER_FACTORY 16
+#define STR_BLACK_HOLE   17
+#define STR_BIGSPACE     18
+#define STR_GAME_OVER    19
+#define STR_LEVEL_FMT    20
+#define STR_LEVEL_CLR    21
+#define STR_SCORE_FMT    22
+#define STR_HISCORE_TITLE 23
+#define STR_HISCORE_HDR  24
+#define STR_DRIFT_TITLE  25
+#define STR_DRIFT_BY     26
+#define STR_KEYS         27
+#define STR_KEY_UP       28
+#define STR_KEY_LEFT     29
+#define STR_KEY_RIGHT    30
+#define STR_KEY_SPACE    31
+#define NUM_STRINGS      32
+
+extern int current_lang;
+extern const char *lang_strings[6][NUM_STRINGS];
+#define tr(id) ((char*)lang_strings[current_lang][(id)])
+
+void set_language(HWND hMenu, int lang);
 
 #define GONIO_PRECISION 1024L //precission of gonio tables
 
@@ -75,7 +149,7 @@
 #define GAME_INTRO    3
 
 // objekt structure
-typedef struct
+typedef struct OBJEKT_s
 				{
 				int ID;                   // type of objekt
 				POINTL current;            // the current coordinates
@@ -108,13 +182,13 @@ OBJEKT* init_objekt (int, int, int, int, float ,int ,int ,LONG , POINTL *, int);
 void free_objekt (OBJEKT *);
 void add_list (OBJEKT *, LLIST **);
 void delete_list (OBJEKT *, LLIST **);
-void process_list (HDC);
-void process_list_zoom (HDC, int);
+void process_list (HPS);
+void process_list_zoom (HPS, int);
 void free_all (void);
 void free_list (LLIST *);
 void init_objekts (void);
-void translate_objekt (HDC, OBJEKT *);
-void translate_zoom_objekt (HDC , OBJEKT *);
+void translate_objekt (HPS, OBJEKT *);
+void translate_zoom_objekt (HPS, OBJEKT *);
 void init_logo (void);
 void free_demo (void);
 void move_objekt (OBJEKT *);
@@ -125,8 +199,8 @@ void insert_message (int, int, char*, ...);
 void objekt_seek (OBJEKT *objekt, int x, int y, int turnratio);
 
 // process the effekts list only (for hiscore table)
-void process_effektslist (HDC );
-void fast_translate_objekt (HDC, OBJEKT*);
+void process_effektslist (HPS);
+void fast_translate_objekt (HPS, OBJEKT*);
 
 // gonio functions
 void generate_tables(void);
@@ -138,10 +212,10 @@ int i_atan (int, int);
 int collision_trian (POINTL check_p, POINTL c1, POINTL c2, POINTL c3);
 int line_sign (POINTL , POINTL , POINTL );
 
-void intro (HDC);
-void game (HDC);
+void intro (HPS);
+void game (HPS);
 void init_game (void);
-void hiscore (HDC);
+void hiscore (HPS);
 int to_deg (float rads);
 float to_rad (int degrees);
 int collision_trian (POINTL, POINTL, POINTL, POINTL);
@@ -165,4 +239,7 @@ int check_hiscores(MPARAM);
 
 void debugdump (void );
 
-#endif  // __DRIFT_H
+// function declarations from common.c
+void randomize_asteroids(POINTL *aster_data, int dim, int radius);
+
+#endif  /* __DRIFT_H */

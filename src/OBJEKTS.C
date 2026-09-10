@@ -2,10 +2,10 @@
 #define INCL_GPI
 
 #include "drift.h"
-#include "llist.h
+#include "llist.h"
 
 // all the necessary llists
-extern LLIST *asteroids;
+extern LLIST *start;
 extern LLIST *effekts;
 extern LLIST *enemies;
 extern LLIST *shots;
@@ -23,7 +23,7 @@ extern int game_mediumex;
 extern int game_smallex;
 extern int game_over;
 extern int game_maxshots;
-extern maxthrustpixels;
+extern int maxthrustpixels;
 extern int game_life;
 
 // powerup vars
@@ -183,12 +183,11 @@ free(objekt);
 
 void free_all (void)
 {
-// free all the used llists
-free_list(asteroids);
-free_list(enemies);
-free_list(shots);
-free_list(extra);
-free_list(effekts);
+free_list(start);    start    = NULL;
+free_list(enemies);  enemies  = NULL;
+free_list(shots);    shots    = NULL;
+free_list(extra);    extra    = NULL;
+free_list(effekts);  effekts  = NULL;
 }
 
 void process_effektslist (HPS hps)

@@ -6,6 +6,174 @@
 
 #include "Drift.h"
 
+/* BLDLEVEL string — read by bldlevel.exe on OS/2 */
+static const char bldlevel[] =
+    "@#Dirk Vandenheuvel:1.03#@##1## 09 Sep 2026 12:00:00      "
+    "ARCAOS:::0::::@@Drift for OS/2 - Space shoot em up game\r\n\x1a";
+
+int current_lang = LANG_EN;
+
+const char *lang_strings[6][NUM_STRINGS] = {
+    { /* LANG_EN */
+        "~Game", "~Play", "~Pauze", "~Quit game", "E~xit  Ctrl+X",
+        "~Options", "~Detail", "~High", "~Medium", "~Low",
+        "~Language", "~Save settings on exit", "~Help", "~About Drift...",
+        "sattelite madness", "Go Polygunzz", "Asteroid factory",
+        "black hole zone", "wow bigspace", "game over",
+        "level %02d", "level %02d clear", "score %05d",
+        "D R I F T  F O R  O S / 2  H I S C O R E S",
+        "Rank    Name          Score  Level",
+        "DRIFT WARPSPEED FOR OS/2 WARP",
+        "By Dirk Vandenheuvel /c/ 1995",
+        "Keys",
+        "UP                     Thrust",
+        "LEFT                Turn left",
+        "RIGHT              Turn right",
+        "SPACE            Fire missile"
+    },
+    { /* LANG_ES */
+        "~Juego", "~Jugar", "~Pausar", "~Salir del juego", "E~xit  Ctrl+X",
+        "~Opciones", "~Detalle", "~Alto", "~Medio", "~Bajo",
+        "~Idioma", "~Guardar ajustes al salir", "~Ayuda", "~Acerca de Drift...",
+        "locura satelital", "Vamos Polygunzz", "Fabrica de asteroides",
+        "zona de agujero negro", "wow gran espacio", "juego terminado",
+        "nivel %02d", "nivel %02d despejado", "puntaje %05d",
+        "D R I F T  P A R A  O S / 2  P U N T U A C I O N E S",
+        "Pos.    Nombre        Puntaje  Nivel",
+        "DRIFT WARPSPEED PARA OS/2 WARP",
+        "Por Dirk Vandenheuvel /c/ 1995",
+        "Teclas",
+        "ARRIBA               Empuje",
+        "IZQUIERDA         Girar izq.",
+        "DERECHA            Girar der.",
+        "ESPACIO              Disparar"
+    },
+    { /* LANG_NL */
+        "~Spel", "~Spelen", "~Pauze", "Spel ~verlaten", "~Afsluiten  Ctrl+X",
+        "~Opties", "~Detail", "~Hoog", "~Middel", "~Laag",
+        "~Taal", "~Instellingen opslaan bij afsluiten", "~Help", "~Over Drift...",
+        "satelliet waanzin", "Ga Polygunzz", "Asteroide fabriek",
+        "zwart gat zone", "wow grote ruimte", "spel voorbij",
+        "niveau %02d", "niveau %02d vrij", "score %05d",
+        "D R I F T  V O O R  O S / 2  H O G E  S C O R E S",
+        "Rang    Naam          Score  Niveau",
+        "DRIFT WARPSPEED VOOR OS/2 WARP",
+        "Door Dirk Vandenheuvel /c/ 1995",
+        "Toetsen",
+        "OMHOOG              Stuwkracht",
+        "LINKS              Links draaien",
+        "RECHTS           Rechts draaien",
+        "SPATIE               Vuur raket"
+    },
+    { /* LANG_DE */
+        "~Spiel", "~Spielen", "~Pause", "Spiel ~beenden", "~Beenden  Ctrl+X",
+        "~Optionen", "~Detail", "~Hoch", "~Mittel", "~Niedrig",
+        "~Sprache", "~Einstellungen beim Beenden speichern", "~Hilfe", "~Ueber Drift...",
+        "Satelliten-Wahnsinn", "Los Polygunzz", "Asteroiden-Fabrik",
+        "Schwarzes-Loch-Zone", "wow grosser Raum", "Spiel vorbei",
+        "Ebene %02d", "Ebene %02d geschafft", "Punkte %05d",
+        "D R I F T  F U E R  O S / 2  H I G H S C O R E S",
+        "Rang    Name          Punkte  Ebene",
+        "DRIFT WARPSPEED FUER OS/2 WARP",
+        "Von Dirk Vandenheuvel /c/ 1995",
+        "Tasten",
+        "HOCH                      Schub",
+        "LINKS               Links drehen",
+        "RECHTS            Rechts drehen",
+        "LEERTASTE               Feuer"
+    },
+    { /* LANG_FR */
+        "~Jeu", "~Jouer", "~Pause", "~Quitter le jeu", "~Exit  Ctrl+X",
+        "~Options", "~Detail", "~Haut", "~Moyen", "~Bas",
+        "~Langue", "~Sauvegarder les reglages a la sortie", "~Aide", "~A propos de Drift...",
+        "folie des satellites", "Allez les Polygunzz", "Usine a asteroides",
+        "zone de trou noir", "wow grand espace", "partie terminee",
+        "niveau %02d", "niveau %02d efface", "score %05d",
+        "D R I F T  P O U R  O S / 2  H A U T S  S C O R E S",
+        "Rang    Nom           Score  Niveau",
+        "DRIFT WARPSPEED POUR OS/2 WARP",
+        "Par Dirk Vandenheuvel /c/ 1995",
+        "Touches",
+        "HAUT                    Poussee",
+        "GAUCHE            Tourner gauche",
+        "DROITE             Tourner droite",
+        "ESPACE              Tirer missile"
+    },
+    { /* LANG_IT */
+        "~Gioco", "~Gioca", "~Pausa", "~Esci dal gioco", "Es~ci  Ctrl+X",
+        "~Opzioni", "~Dettaglio", "~Alta", "~Media", "~Bassa",
+        "~Lingua", "~Salva impostazioni all'uscita", "~Aiuto", "~Informazioni su Drift...",
+        "follia satellitare", "Forza Polygunzz", "Fabbrica di asteroidi",
+        "zona buco nero", "wow grande spazio", "partita finita",
+        "livello %02d", "livello %02d superato", "punteggio %05d",
+        "D R I F T  P E R  O S / 2  P U N T E G G I  M A S S I M I",
+        "Pos.    Nome          Punti  Livello",
+        "DRIFT WARPSPEED PER OS/2 WARP",
+        "Di Dirk Vandenheuvel /c/ 1995",
+        "Tasti",
+        "SU                          Spinta",
+        "SINISTRA          Svolta sinistra",
+        "DESTRA               Svolta destra",
+        "SPAZIO              Lancia missile"
+    }
+};
+
+static HWND get_submenu(HWND hMnu, USHORT id)
+{
+    MENUITEM mi;
+    memset(&mi, 0, sizeof(mi));
+    if ((BOOL)WinSendMsg(hMnu, MM_QUERYITEM, MPFROM2SHORT(id, FALSE), MPFROMP(&mi)))
+        return mi.hwndSubMenu;
+    return NULLHANDLE;
+}
+
+static void menu_set_text(HWND hMnu, USHORT id, const char *text)
+{
+    WinSendMsg(hMnu, MM_SETITEMTEXT, MPFROMSHORT(id), MPFROMP((PSZ)text));
+}
+
+void set_language(HWND hMenu, int lang)
+{
+    HWND hGame, hOptions, hDetail, hHelp;
+
+    current_lang = lang;
+
+    hGame    = get_submenu(hMenu, IDM_SUBMENU_GAME);
+    hOptions = get_submenu(hMenu, IDM_SUBMENU_OPTIONS);
+    hHelp    = get_submenu(hMenu, IDM_SUBMENU_HELP);
+
+    menu_set_text(hMenu, IDM_SUBMENU_GAME,    tr(STR_GAME));
+    menu_set_text(hMenu, IDM_SUBMENU_OPTIONS, tr(STR_OPTIONS));
+    menu_set_text(hMenu, IDM_SUBMENU_HELP,    tr(STR_HELP));
+
+    if (hGame) {
+        menu_set_text(hGame, IDM_PLAY,  tr(STR_PLAY));
+        menu_set_text(hGame, IDM_PAUZE, tr(STR_PAUZE));
+        menu_set_text(hGame, IDM_QUIT,  tr(STR_QUITGAME));
+        menu_set_text(hGame, IDM_EXIT,  tr(STR_EXIT));
+    }
+    if (hOptions) {
+        hDetail = get_submenu(hOptions, IDM_SUBMENU_DETAIL);
+        menu_set_text(hOptions, IDM_SUBMENU_DETAIL,   tr(STR_DETAIL));
+        menu_set_text(hOptions, IDM_SUBMENU_LANGUAGE, tr(STR_LANGUAGE));
+        menu_set_text(hOptions, IDM_SAVEONEXIT,       tr(STR_SAVEONEXIT));
+        if (hDetail) {
+            menu_set_text(hDetail, IDM_HIGHDET,   tr(STR_DETAIL_HIGH));
+            menu_set_text(hDetail, IDM_MEDIUMDET, tr(STR_DETAIL_MEDIUM));
+            menu_set_text(hDetail, IDM_LOWDET,    tr(STR_DETAIL_LOW));
+        }
+    }
+    if (hHelp)
+        menu_set_text(hHelp, IDM_ABOUT, tr(STR_ABOUT));
+
+    WinCheckMenuItem(hMenu, IDM_LANG_EN, lang == LANG_EN);
+    WinCheckMenuItem(hMenu, IDM_LANG_ES, lang == LANG_ES);
+    WinCheckMenuItem(hMenu, IDM_LANG_NL, lang == LANG_NL);
+    WinCheckMenuItem(hMenu, IDM_LANG_DE, lang == LANG_DE);
+    WinCheckMenuItem(hMenu, IDM_LANG_FR, lang == LANG_FR);
+    WinCheckMenuItem(hMenu, IDM_LANG_IT, lang == LANG_IT);
+}
+
 #define ID_TIMER	1
 ULONG idTimer;
 
@@ -45,7 +213,7 @@ struct HISCORE HiTable[10];
 int end_count;
 
 // all the necessary llists
-LLIST *asteroids  = NULL;
+LLIST *start      = NULL;
 LLIST *effekts    = NULL;
 LLIST *enemies    = NULL;
 LLIST *shots      = NULL;
@@ -107,10 +275,20 @@ hmq = WinCreateMsgQueue (hab,0L);
 
 WinRegisterClass (hab, (PSZ) szProgName, (PFNWP) ClientWndProc, CS_SIZEREDRAW|CS_CLIPCHILDREN,0L);
 
-hwndMain = WinCreateStdWindow(HWND_DESKTOP, WS_VISIBLE, &flFrameFlags,
-																szClientClass, "Drift Warpspeed", WS_VISIBLE,
+hwndMain = WinCreateStdWindow(HWND_DESKTOP, 0L, &flFrameFlags,
+																szClientClass, "Drift Warpspeed", 0L,
                                 0L,ID_RESOURCE,
 																(PHWND) &hwndClient);
+{
+    LONG cxScreen = WinQuerySysValue(HWND_DESKTOP, SV_CXSCREEN);
+    LONG cyScreen = WinQuerySysValue(HWND_DESKTOP, SV_CYSCREEN);
+    LONG winW = (cxScreen >= 1024L) ? 1024L : cxScreen;
+    LONG winH = (cyScreen >= 768L)  ? 768L  : cyScreen;
+    LONG x    = (cxScreen - winW) / 2;
+    LONG y    = (cyScreen - winH) / 2;
+    WinSetWindowPos(hwndMain, HWND_TOP, x, y, winW, winH,
+                    SWP_SIZE | SWP_MOVE | SWP_ACTIVATE | SWP_SHOW);
+}
 // generate gonio tables
 generate_tables();
 
@@ -235,6 +413,7 @@ switch (messg)
 								stat = WinCheckMenuItem(hMenu,IDM_SAVEONEXIT,TRUE);
 						else
 								stat = WinCheckMenuItem(hMenu,IDM_SAVEONEXIT,FALSE);
+						set_language(hMenu, current_lang);
 						break;
 		 case WM_TIMER:
 						hps = WinGetPS(hwnd) ;
@@ -276,21 +455,21 @@ switch (messg)
                           game_duration = 200;                          if (random(2) == 0)
                             {
                             // insert the hiscore table
-													  insert_message(1800,0,"D R I F T  F O R  O S / 2  H I S C O R E S");
-													  insert_message(1600,0,"Rank    Name          Score  Level");
+													  insert_message(1800,0,"%s",tr(STR_HISCORE_TITLE));
+													  insert_message(1600,0,"%s",tr(STR_HISCORE_HDR));
 													  for (tel = 0; tel < 10; tel++)
 														  insert_message(1460-(tel*100),0,"%2d     %-12s %5d    %2d",tel+1,HiTable[tel].name,HiTable[tel].score,HiTable[tel].level);
                             }
                           else
                             {
                             // insert help message
-                            insert_message(1800,0,"DRIFT WARPSPEED FOR OS/2 WARP");
-                            insert_message(1600,0,"By Dirk Vandenheuvel /c/ 1995");
-                            insert_message(1400,0,"Keys");
-                            insert_message(1200,0,"UP                     Thrust");
-                            insert_message(1100,0,"LEFT                Turn left");
-                            insert_message(1000,0,"RIGHT              Turn right");
-                            insert_message(900,0, "SPACE            Fire missile");
+                            insert_message(1800,0,"%s",tr(STR_DRIFT_TITLE));
+                            insert_message(1600,0,"%s",tr(STR_DRIFT_BY));
+                            insert_message(1400,0,"%s",tr(STR_KEYS));
+                            insert_message(1200,0,"%s",tr(STR_KEY_UP));
+                            insert_message(1100,0,"%s",tr(STR_KEY_LEFT));
+                            insert_message(1000,0,"%s",tr(STR_KEY_RIGHT));
+                            insert_message(900,0,"%s",tr(STR_KEY_SPACE));
                             }
                           WinInvalidateRect(hwnd,NULL,TRUE);
 													}
@@ -436,6 +615,15 @@ switch (messg)
                               game_life = 3;
 															WinInvalidateRect(hwnd, NULL, TRUE);
 															break;
+									case IDM_EXIT:
+																WinPostMsg(hwnd, WM_QUIT, 0, 0);
+																break;
+									case IDM_LANG_EN: set_language(hMenu, LANG_EN); break;
+									case IDM_LANG_ES: set_language(hMenu, LANG_ES); break;
+									case IDM_LANG_NL: set_language(hMenu, LANG_NL); break;
+									case IDM_LANG_DE: set_language(hMenu, LANG_DE); break;
+									case IDM_LANG_FR: set_language(hMenu, LANG_FR); break;
+									case IDM_LANG_IT: set_language(hMenu, LANG_IT); break;
 									default:    break;
 									}
 									break;
@@ -479,12 +667,12 @@ randomize();
 special_rand = random(20);
 add_list(ship,&start);
 if (game_shieldduration > 3)
-	 add_list(init_objekt(OT_SHIPSHIELD,ship->current.x,ship->current.y,ship->angle,0,DT_POLY,game_shieldduration, CLR_WHITE,shielddata,4),effekts);
+	 add_list(init_objekt(OT_SHIPSHIELD,ship->current.x,ship->current.y,ship->angle,0,DT_POLY,game_shieldduration, CLR_WHITE,shielddata,4),&effekts);
 // insert sats
 if (special_rand == 0)  // sattelite madness
 		{
 		tmprnd = 10;
-		insert_message (1600,0,"sattelite madness");
+		insert_message(1600,0,"%s",tr(STR_SAT_MADNESS));
 	 }
 else
 	 {
@@ -495,23 +683,23 @@ else
 if (tmprnd > 0)
 	 for (count = 0; count < tmprnd; count++)
 		{
-		add_list(init_objekt(OT_SAT,random(2000),random(1200)-600,random(360),3,DT_POLY,0,CLR_CYAN,satdata,8),enemies);
+		add_list(init_objekt(OT_SAT,random(2000),random(1200)-600,random(360),3,DT_POLY,0,CLR_CYAN,satdata,8),&start);
 		nbr_asteroids++;
 		}
 if (special_rand == 2)
 	 {
-	 insert_message (1600,0,"Go Polygunzz");
+	 insert_message(1600,0,"%s",tr(STR_POLYGUNZZ));
 	 for (count = 0; count < 4; count++)
-		 add_list(init_objekt(OT_ENEMY1,edge(),random(2000),0,3,DT_POLY,0,CLR_BLUE,enemy1data,5),enemies);
+		 add_list(init_objekt(OT_ENEMY1,edge(),random(2000),0,3,DT_POLY,0,CLR_BLUE,enemy1data,5),&start);
 	 for (count = 0; count < 4; count++)
-			 add_list(init_objekt(OT_ENEMY2,random(2000),edge(),0,4,DT_POLY,0,CLR_CYAN,enemy2data,7),enemies);
+			 add_list(init_objekt(OT_ENEMY2,random(2000),edge(),0,4,DT_POLY,0,CLR_CYAN,enemy2data,7),&start);
 	 nbr_asteroids+=8;
 	 }
 if (special_rand == 3)
 	 {
-	 insert_message (1600,0,"Asteroid factory");
+	 insert_message(1600,0,"%s",tr(STR_ASTER_FACTORY));
 	 for (count=0; count < 4; count++)
-			add_list(init_objekt(OT_MYSTSHIP,edge(),random(2000),random(360),random(8)+2,DT_POLY,0,CLR_BROWN,mysterydata,8),enemies);
+			add_list(init_objekt(OT_MYSTSHIP,edge(),random(2000),random(360),random(8)+2,DT_POLY,0,CLR_BROWN,mysterydata,8),&start);
 	 nbr_asteroids+=4;
 	 }
 if (special_rand > 4 || special_rand == 1 || special_rand == 4) // no special level except black hole zone
@@ -520,25 +708,25 @@ if (special_rand > 4 || special_rand == 1 || special_rand == 4) // no special le
 	for (count = 0; count < game_level+1; count++)
 		{
 		randomize_asteroids (asteroiddata , 10, 100);
-		add_list(init_objekt(OT_BIGASTER,random(1200)-600,random(1200)-600,random(360),random(8)+2,DT_POLY,0,CLR_GREEN,asteroiddata,10),asteroids);
+		add_list(init_objekt(OT_BIGASTER,random(1200)-600,random(1200)-600,random(360),random(8)+2,DT_POLY,0,CLR_GREEN,asteroiddata,10),&start);
 		nbr_asteroids++;
 		}
 	 }
 if (special_rand == 1)
 	 {
 	 game_blackhole = TRUE;
-	 insert_message (1600,0,"black hole zone");
+	 insert_message(1600,0,"%s",tr(STR_BLACK_HOLE));
 	 }
 if (special_rand == 4)
   {
   game_bigspace = TRUE;
-  insert_message (1600,0,"wow bigspace");
+  insert_message(1600,0,"%s",tr(STR_BIGSPACE));
   }
 // insert start message
-insert_message (800,0, "level %02d",game_level);
+insert_message(800,0,tr(STR_LEVEL_FMT),game_level);
 }
 
-void game (HDC hdc)
+void game (HPS hps)
 {
 int zoom, count;
 POINTL at;
@@ -547,25 +735,25 @@ if (game_duration != 0)           // zooming intro of the game
 	 zoom = game_duration / 2;
 	 if (zoom == 0)
 			zoom = 1;
-	 process_list_zoom(hdc,zoom);
+	 process_list_zoom(hps,zoom);
 	 game_duration--;
 	 }
 else
 		{
-	 process_list(hdc);
+	 process_list(hps);
 		if (random(2500) == 0 && !game_over && nbr_asteroids>5)  // yep the mystery ship arrives
 			 {
-				add_list(init_objekt(OT_MYSTSHIP,edge(),edge(),random(360),random(8)+4,DT_POLY,0,CLR_BROWN,mysterydata,8),enemies);
+				add_list(init_objekt(OT_MYSTSHIP,edge(),edge(),random(360),random(8)+4,DT_POLY,0,CLR_BROWN,mysterydata,8),&start);
 				nbr_asteroids++;
 			 }
 		if (random(1000) < game_level && !game_over && nbr_asteroids > 5) // enemy1 has arrived
 			 {
-			 add_list(init_objekt(OT_ENEMY1,random(2000),edge(),0,4,DT_POLY,0,CLR_BLUE,enemy1data,5),enemies);
+			 add_list(init_objekt(OT_ENEMY1,random(2000),edge(),0,4,DT_POLY,0,CLR_BLUE,enemy1data,5),&start);
 			 nbr_asteroids++;
 			 }
 		if (random(1500) == 0 && !game_over && nbr_asteroids > 5) // enemy2 has arrived
 			 {
-			 add_list(init_objekt(OT_ENEMY2,edge(),random(2000),0,4,DT_POLY,0,CLR_CYAN,enemy2data,7),enemies);
+			 add_list(init_objekt(OT_ENEMY2,edge(),random(2000),0,4,DT_POLY,0,CLR_CYAN,enemy2data,7),&start);
 			 nbr_asteroids++;
 		 }
 		if (game_shieldduration > 0)
@@ -578,8 +766,8 @@ else
 			 // game over... the end
 			 if (end_count == 150)
 					{
-					insert_message (1200,0, "game over");
-					insert_message (800,0, "score %05d",game_score);
+					insert_message(1200,0,"%s",tr(STR_GAME_OVER));
+					insert_message(800,0,tr(STR_SCORE_FMT),game_score);
 					WinPostMsg(hwndClient,DM_CHECKSCORE,(MPARAM)game_score,(MPARAM)0); // check for hiscore
 					}
 		 if (end_count == 0)
@@ -604,8 +792,8 @@ else
 						 at.y = random(2000);
 						 insert_explosion(at,10);
 						 }
-					insert_message (1200,0, "level %02d clear", game_level);
-					insert_message (800,0, "score %05d",game_score);
+					insert_message(1200,0,tr(STR_LEVEL_CLR),game_level);
+					insert_message(800,0,tr(STR_SCORE_FMT),game_score);
 					}
 			 input_enabled = FALSE;
 			 if ((llist_items == 1) || (llist_items == 2 && game_shieldduration != 0))       // real end of game
@@ -696,7 +884,7 @@ if (state & 0x8000)
 	 for (count = 0; count < maxthrustpixels; count++)
 			 {
 			 tmpangle = (ship->angle)+180+random(40)-20;
-			 add_list(init_objekt(OT_THRUST,ship->current.x,ship->current.y, tmpangle, random(10)+MAXTHRUST, DT_PIXEL, random(4)+3, CLR_WHITE, pixeldata, 1),effekts);
+			 add_list(init_objekt(OT_THRUST,ship->current.x,ship->current.y, tmpangle, random(10)+MAXTHRUST, DT_PIXEL, random(4)+3, CLR_WHITE, pixeldata, 1),&effekts);
 		 }
 	}
 key = 0x39; // VK_SPACE
@@ -707,18 +895,18 @@ if (state & 0x8000)
 		{
 		if (game_shots == 1)
 			{
-				 add_list(init_objekt(OT_SHOT,ship->real[0].x,ship->real[0].y, ship -> angle, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),shots);
+				 add_list(init_objekt(OT_SHOT,ship->real[0].x,ship->real[0].y, ship -> angle, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),&start);
 				 thrust_objekt(ship,-THRUSTPOWER);
 				 }
 			else
           {
-          add_list(init_objekt(OT_SHOT,ship->real[0].x,ship->real[0].y, ship -> angle-3, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),shots);
-          add_list(init_objekt(OT_SHOT,ship->real[0].x,ship->real[0].y, ship -> angle+3, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),shots);
+          add_list(init_objekt(OT_SHOT,ship->real[0].x,ship->real[0].y, ship -> angle-3, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),&start);
+          add_list(init_objekt(OT_SHOT,ship->real[0].x,ship->real[0].y, ship -> angle+3, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),&start);
           thrust_objekt(ship,-THRUSTPOWER*2);
           }
       if (game_rearshot)
           {
-          add_list(init_objekt(OT_SHOT,ship->real[2].x,ship->real[2].y, ship -> angle+180, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),shots);
+          add_list(init_objekt(OT_SHOT,ship->real[2].x,ship->real[2].y, ship -> angle+180, MAXTHRUST+12, DT_LINE, game_shotlife,CLR_PINK, shotdata, 2),&start);
           thrust_objekt(ship,THRUSTPOWER);
           }
       game_shooting = game_maxshots;
@@ -733,7 +921,7 @@ int count;
 for (count = 0; count < nbr_pixels; count++)
 	{
   tmpangle = random(360);
-  add_list(init_objekt(OT_THRUST,at.x,at.y, tmpangle, random(10)+5, DT_PIXEL, 15, CLR_WHITE, pixeldata, 1),effekts);
+  add_list(init_objekt(OT_THRUST,at.x,at.y, tmpangle, random(10)+5, DT_PIXEL, 15, CLR_WHITE, pixeldata, 1),&effekts);
 	}
 }
 
@@ -745,7 +933,7 @@ int count;
 for (count = 0; count < nbr_lines; count++)
   {
   tmpangle = random(360);
-	add_list(init_objekt(OT_LINE,at.x,at.y, tmpangle, random(12)+5, DT_POLY, 30, CLR_YELLOW, linedata, 2),effekts);
+	add_list(init_objekt(OT_LINE,at.x,at.y, tmpangle, random(12)+5, DT_POLY, 30, CLR_YELLOW, linedata, 2),&effekts);
   }
 }
 
@@ -790,6 +978,8 @@ if ((CfgFile = fopen("Driftos2.cfg","rb")) == NULL)
    return; // no cfg file found
 fread(&saveonexit,sizeof(int),1,CfgFile);
 fread(&detaillevel,sizeof(int),1,CfgFile);
+fread(&current_lang,sizeof(int),1,CfgFile); /* may fail on old cfg - ignore */
+if (current_lang < LANG_EN || current_lang > LANG_IT) current_lang = LANG_EN;
 fclose(CfgFile);
 }
 
@@ -800,6 +990,7 @@ if ((CfgFile = fopen("Driftos2.cfg","wb")) == NULL)
    return; // serious error just do not save
 fwrite(&saveonexit,sizeof(int),1,CfgFile);
 fwrite(&detaillevel,sizeof(int),1,CfgFile);
+fwrite(&current_lang,sizeof(int),1,CfgFile);
 fclose(CfgFile);
 }
 

@@ -1,0 +1,3 @@
+src\objekts.c(668): Warning! W202: Symbol 'x_temp' has been defined, but not referenced
+src\objekts.c(668): Warning! W202: Symbol 'x_rot' has been defined, but not referenced
+src\objekts.c(668): Warning! W202: Symbol 'y_rot' has been defined, but not referenced

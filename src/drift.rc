@@ -1,0 +1,71 @@
+#include <os2.h>
+#include "resource.h"
+#include "drift.h"
+
+MENU ID_RESOURCE
+BEGIN
+    SUBMENU "~Game", IDM_SUBMENU_GAME
+    BEGIN
+        MENUITEM "~Play",              IDM_PLAY
+        MENUITEM "~Pauze",             IDM_PAUZE,  MIS_TEXT, MIA_DISABLED
+        MENUITEM "~Quit game",         IDM_QUIT,   MIS_TEXT, MIA_DISABLED
+        MENUITEM SEPARATOR
+        MENUITEM "E~xit  Ctrl+X",      IDM_EXIT
+    END
+    SUBMENU "~Options", IDM_SUBMENU_OPTIONS
+    BEGIN
+        SUBMENU "~Detail", IDM_SUBMENU_DETAIL
+        BEGIN
+            MENUITEM "~High",              IDM_HIGHDET
+            MENUITEM "~Medium",            IDM_MEDIUMDET
+            MENUITEM "~Low",               IDM_LOWDET
+        END
+        MENUITEM SEPARATOR
+        SUBMENU "~Language", IDM_SUBMENU_LANGUAGE
+        BEGIN
+            MENUITEM "~English",           IDM_LANG_EN
+            MENUITEM "~Spanish",           IDM_LANG_ES
+            MENUITEM "~Dutch",             IDM_LANG_NL
+            MENUITEM "~German",            IDM_LANG_DE
+            MENUITEM "~French",            IDM_LANG_FR
+            MENUITEM "~Italian",           IDM_LANG_IT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "~Save settings on exit", IDM_SAVEONEXIT
+    END
+    SUBMENU "~Help", IDM_SUBMENU_HELP
+    BEGIN
+        MENUITEM "~About Drift...",    IDM_ABOUT
+    END
+END
+
+ACCELTABLE ID_RESOURCE
+BEGIN
+    "x",  IDM_EXIT,    CONTROL
+    27,   IDVK_ESCAPE, CHAR
+END
+
+/* Hi-score entry dialog */
+DLGTEMPLATE DRIFT_HISCORE LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "New Hi-Score!", DRIFT_HISCORE, 80, 100, 200, 60
+    BEGIN
+        LTEXT         "Enter your name:",  -1,          10, 42, 90, 8
+        ENTRYFIELD    "",                  IDD_HISCORE, 105, 40, 80, 12, ES_MARGIN
+        DEFPUSHBUTTON "OK",                DID_OK,      75,  8, 50, 14
+    END
+END
+
+/* About dialog */
+DLGTEMPLATE IDD_ABOUT LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "About Drift", IDD_ABOUT, 80, 100, 200, 100
+    BEGIN
+        CTEXT         "Drift for OS/2",                -1, 10, 80, 180, 10
+        CTEXT         "Version 1.03",             -1, 10, 68, 180, 10
+        CTEXT         "(c) 1995 Dirk Vandenheuvel",    -1, 10, 56, 180, 10
+        CTEXT         "Released as Open Source (GPL)", -1, 10, 44, 180, 10
+        CTEXT         "OpenWatcom build 2026",         -1, 10, 32, 180, 10
+        DEFPUSHBUTTON "OK", DID_OK, 75, 8, 50, 14
+    END
+END

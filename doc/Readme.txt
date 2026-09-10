@@ -12,8 +12,8 @@ http://www.os2world.com/games
 -------------------------------------------------------------------------
 
 
-     D R I F T  For OS/2 Version 1.02beta: Freeware  Readme.txt
-     -------------------------------------------------------------
+     D R I F T  For OS/2 Version 1.03  Readme.txt
+     -----------------------------------------------
 
 +++ 1. Drift Overview +++
 
@@ -46,8 +46,10 @@ like it you can always send me a postcard.
 The following files should be included in Driftos2.zip (or other
 compression format).
 
-Driftos2.exe             	Main executable
-Readme.txt              	Text file describing Drift (this file)
+Driftos2.exe             Main executable
+doc\Readme.txt           This file
+doc\Changelog.txt        Version history
+doc\LICENSE.txt          GNU GPL license
 
 
 +++ 3. Drift under OS/2 +++
@@ -111,5 +113,5 @@ fan mail, ideas or bug reports.
 
 
 
-             DriftOS/2 V1 (c) Copyright Dirk Vandenheuvel 1995
+             DriftOS/2 V1.03 (c) Copyright Dirk Vandenheuvel 1995
 

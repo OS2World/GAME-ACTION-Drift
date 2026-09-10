@@ -1,0 +1,4 @@
+NAME DRIFTOS2 WINDOWAPI
+DESCRIPTION '@#Dirk Vandenheuvel:1.03#@##1## 09 Sep 2026 12:00:00      ARCAOS:::0::::@@Drift for OS/2 - Space shoot em up game (OpenWatcom build)'
+STACKSIZE 65536
+HEAPSIZE  4096
