@@ -1,21 +1,7 @@
--------------------------------------------------------------------------------
-(2002/04/23)
-
-NOTE: Drift for OS/2 had been made OpenSource on 2002/04/23. 
-
-This Game is now OpenSource under the GNU GPL licence, thanks to the Author Dirk Vandenheuvel (dirk.vandenheuvel@pandora.be)
-
-Martin Iturbide
-martin@os2world.com
-
-http://www.os2world.com/games
--------------------------------------------------------------------------
-
-
      D R I F T  For OS/2 Version 1.03  Readme.txt
      -----------------------------------------------
 
-+++ 1. Drift Overview +++
+== 1. Drift Overview ==
 
 The year is 5300 and you are in command of the brand new experimental
 DriftRunner V3X22 (yep... a major improvement over the old V2X22
@@ -36,14 +22,9 @@ anyone can do it, it surely is you...
 
 Good luck!
 
-+++ 2. Freeware? +++
+== 2. Open Source ==
 
-Drift is Freeware. This means you can copy it as much as you like as
-long as you don't change anything to the original program. I spend a lot
-of time programming this game and I hope you enjoy it. If you really
-like it you can always send me a postcard.
-
-The following files should be included in Driftos2.zip (or other
+The following files should be included in Drift_x-xx.zip (or other
 compression format).
 
 Driftos2.exe             Main executable
@@ -52,7 +33,7 @@ doc\Changelog.txt        Version history
 doc\LICENSE.txt          GNU GPL license
 
 
-+++ 3. Drift under OS/2 +++
+== 3. Drift under OS/2 ==
 
 This is the OS/2 Warp version of Drift. This version was ported in less than 
 a week from the windows version. This version is almost identical but there 
@@ -90,7 +71,7 @@ There is no help file included in this version so here is the ultra short versio
 Easy isn't it :)
 
 
-+++ 4. Disclaimer +++
+== 4. Disclaimer ==
 
 This product is provided "as is" without warranty of any kind. The
 entire risk as to the results and performance of the program is assumed
@@ -102,16 +83,9 @@ incidental, consequential, or special damages of any nature whatsoever
 resulting from the use or inability to use this product.
 
 
-+++ 5. The author +++
+== 5. The author ==
 
-You can contact me if you have any comments, suggestions, love letters,
-fan mail, ideas or bug reports.
+Dirk Vandenheuvel - Original Author
 
-	* vandenh@ibm.net
-
-
-
-
-
-             DriftOS/2 V1.03 (c) Copyright Dirk Vandenheuvel 1995
-
+== 6. Links ==
+* https://github.com/OS2World/GAME-ACTION-Drift
