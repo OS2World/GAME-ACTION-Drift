@@ -40,7 +40,7 @@ BEGIN
     END
     SUBMENU "~Help", IDM_SUBMENU_HELP
     BEGIN
-        MENUITEM "~About Drift...",    IDM_ABOUT
+        MENUITEM "~About...",          IDM_ABOUT
     END
 END
 
@@ -71,13 +71,14 @@ END
 /* About dialog */
 DLGTEMPLATE IDD_ABOUT LOADONCALL MOVEABLE DISCARDABLE
 BEGIN
-    DIALOG "About Drift", IDD_ABOUT, 80, 100, 200, 100
+    DIALOG "About Drift", IDD_ABOUT, 32, 24, 240, 110,, FCF_TITLEBAR|FCF_DLGBORDER
     BEGIN
-        CTEXT         "Drift for OS/2",                -1, 10, 80, 180, 10
-        CTEXT         "Version 1.03",             -1, 10, 68, 180, 10
-        CTEXT         "(c) 1995 Dirk Vandenheuvel",    -1, 10, 56, 180, 10
-        CTEXT         "Released as Open Source (GPL)", -1, 10, 44, 180, 10
-        CTEXT         "OpenWatcom build 2026",         -1, 10, 32, 180, 10
-        DEFPUSHBUTTON "OK", DID_OK, 75, 8, 50, 14
+        CTEXT "Drift for OS/2",              -1, 10, 90, 220, 8
+        CTEXT "Version 1.03",               -1, 10, 78, 220, 8
+        CTEXT "OpenWatcom Release",         -1, 10, 66, 220, 8
+        CTEXT "(c) 1995, Dirk Vandenheuvel",-1, 10, 54, 220, 8
+        CTEXT "(c) 2026, OS2World",         -1, 10, 42, 220, 8
+        CTEXT "GNU GPL V3",                 -1, 10, 30, 220, 8
+        DEFPUSHBUTTON "Close" DID_OK,           98, 10, 44, 14, WS_GROUP
     END
 END

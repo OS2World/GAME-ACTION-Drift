@@ -17,7 +17,7 @@ const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_EN */
         "~Game", "~Play", "~Pause Game\tCtrl+P", "~Quit game", "E~xit\tCtrl+X",
         "~Options", "~Detail", "~High", "~Medium", "~Low",
-        "~Language", "~Save settings on exit", "~Help", "~About Drift...",
+        "~Language", "~Save settings on exit", "~Help", "~About...",
         "sattelite madness", "Go Polygunzz", "Asteroid factory",
         "black hole zone", "wow bigspace", "game over",
         "level %02d", "level %02d clear", "score %05d",
@@ -36,7 +36,7 @@ const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_ES */
         "~Juego", "~Jugar", "~Pausar Juego\tCtrl+P", "~Salir del juego", "~Salir\tCtrl+X",
         "~Opciones", "~Detalle", "~Alto", "~Medio", "~Bajo",
-        "~Idioma", "~Guardar ajustes al salir", "~Ayuda", "~Acerca de Drift...",
+        "~Idioma", "~Guardar ajustes al salir", "~Ayuda", "~About...",
         "locura satelital", "Vamos Polygunzz", "Fabrica de asteroides",
         "zona de agujero negro", "wow gran espacio", "juego terminado",
         "nivel %02d", "nivel %02d despejado", "puntaje %05d",
@@ -55,7 +55,7 @@ const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_NL */
         "~Spel", "~Spelen", "~Pauze Spel\tCtrl+P", "Spel ~verlaten", "~Afsluiten\tCtrl+X",
         "~Opties", "~Detail", "~Hoog", "~Middel", "~Laag",
-        "~Taal", "~Instellingen opslaan bij afsluiten", "~Help", "~Over Drift...",
+        "~Taal", "~Instellingen opslaan bij afsluiten", "~Help", "~About...",
         "satelliet waanzin", "Ga Polygunzz", "Asteroide fabriek",
         "zwart gat zone", "wow grote ruimte", "spel voorbij",
         "niveau %02d", "niveau %02d vrij", "score %05d",
@@ -74,7 +74,7 @@ const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_DE */
         "~Spiel", "~Spielen", "~Pause Spiel\tCtrl+P", "Spiel ~beenden", "~Beenden\tCtrl+X",
         "~Optionen", "~Detail", "~Hoch", "~Mittel", "~Niedrig",
-        "~Sprache", "~Einstellungen beim Beenden speichern", "~Hilfe", "~Ueber Drift...",
+        "~Sprache", "~Einstellungen beim Beenden speichern", "~Hilfe", "~About...",
         "Satelliten-Wahnsinn", "Los Polygunzz", "Asteroiden-Fabrik",
         "Schwarzes-Loch-Zone", "wow grosser Raum", "Spiel vorbei",
         "Ebene %02d", "Ebene %02d geschafft", "Punkte %05d",
@@ -93,7 +93,7 @@ const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_FR */
         "~Jeu", "~Jouer", "~Pause Jeu\tCtrl+P", "~Quitter le jeu", "~Quitter\tCtrl+X",
         "~Options", "~Detail", "~Haut", "~Moyen", "~Bas",
-        "~Langue", "~Sauvegarder les reglages a la sortie", "~Aide", "~A propos de Drift...",
+        "~Langue", "~Sauvegarder les reglages a la sortie", "~Aide", "~About...",
         "folie des satellites", "Allez les Polygunzz", "Usine a asteroides",
         "zone de trou noir", "wow grand espace", "partie terminee",
         "niveau %02d", "niveau %02d efface", "score %05d",
@@ -112,7 +112,7 @@ const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_IT */
         "~Gioco", "~Gioca", "~Pausa Gioco\tCtrl+P", "~Esci dal gioco", "Es~ci\tCtrl+X",
         "~Opzioni", "~Dettaglio", "~Alta", "~Media", "~Bassa",
-        "~Lingua", "~Salva impostazioni all'uscita", "~Aiuto", "~Informazioni su Drift...",
+        "~Lingua", "~Salva impostazioni all'uscita", "~Aiuto", "~About...",
         "follia satellitare", "Forza Polygunzz", "Fabbrica di asteroidi",
         "zona buco nero", "wow grande spazio", "partita finita",
         "livello %02d", "livello %02d superato", "punteggio %05d",
