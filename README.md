@@ -9,7 +9,7 @@ Original version 1.02beta by Dirk Vandenheuvel (1995).
 
 ## License
 
-GNU GPL
+GNU GPLv3 or later
 
 ## Build
 
@@ -39,3 +39,4 @@ This runs `wmake clean` then `wmake all`. Output goes to `bin\`.
 ## Links
 
 - http://www.os2world.com/games/index.php/native-games/action-2/82-drift
+- https://github.com/OS2World/GAME-ACTION-Drift
