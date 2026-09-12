@@ -3,6 +3,8 @@
 A space shoot-em-up game for OS/2 Presentation Manager (Asteroids style).
 Original version 1.02beta by Dirk Vandenheuvel (1995).
 
+![Drift ScreenShot](/doc/Drift.png)
+
 ## Version
 
 1.03 (OpenWatcom build, 2026)
