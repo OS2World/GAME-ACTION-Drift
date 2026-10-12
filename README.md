@@ -23,6 +23,29 @@ compile-wat.cmd
 
 This runs `wmake clean` then `wmake all`. Output goes to `bin\`.
 
+## Controls
+
+| Action | Default |
+|---|---|
+| Turn left / right | Left / Right arrow |
+| Thrust | Up arrow |
+| Fire | Space |
+| New game / Quit game | Ctrl+N / Ctrl+Q |
+| Pause / Exit | Ctrl+P / Ctrl+X |
+
+Everything can be changed in **Options - Key Mapping...**, a window with three pages:
+
+- **Keyboard** - click a box and press the key for that action.
+- **Mouse** - tick *Enable Mouse Control*; click a box, then click it again with a
+  mouse button or press an arrow key for a pointer movement (Delete clears). The
+  pointer is hidden and re-centred while you play.
+- **Joystick** - tick *Enable Joystick*, choose Joystick A or B, click a box and
+  press a joystick button or move the stick (Delete clears). *Calibrate A* /
+  *Calibrate B* set the stick's centre. Uses the GAME$ driver.
+
+The mappings are saved in `Driftos2.cfg`. Drift has no help file; this table and
+the intro screen (which shows your keys) are the only documentation.
+
 ## Changes in 1.04
 
 - New Options - Key Mapping... window (Keyboard, Mouse and Joystick tabs):

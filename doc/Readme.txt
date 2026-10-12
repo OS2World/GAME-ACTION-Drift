@@ -70,6 +70,25 @@ There is no help file included in this version so here is the ultra short versio
 
 Easy isn't it :)
 
+Controls (Options - Key Mapping... changes all of them):
+
+	Turn left / right     Left / Right arrow
+	Thrust                Up arrow
+	Fire                  Space
+	New game              Ctrl+N
+	Quit game             Ctrl+Q
+	Pause / Exit          Ctrl+P / Ctrl+X
+
+The Key Mapping window has three pages:
+	Keyboard   Click a box and press the key for that action.
+	Mouse      Tick Enable Mouse Control. Click a box, then click it again
+	           with a mouse button, or press an arrow key for a pointer
+	           movement (Delete clears a box).
+	Joystick   Tick Enable Joystick and choose Joystick A or B. Click a box
+	           and press a joystick button or move the stick (Delete clears).
+	           Calibrate A / Calibrate B set the centre of the stick.
+The mappings are saved in Driftos2.cfg.
+
 
 == 4. Disclaimer ==
 
