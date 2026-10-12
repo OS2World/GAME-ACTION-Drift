@@ -51,6 +51,7 @@
 #define IDM_LANG_IT     306
 #define IDM_BACKGRND    307
 #define IDM_FRAME_CTRL  308
+#define IDM_KEYMAPPING  309
 
 /* Submenu item IDs — needed to locate submenu HWNDs at runtime */
 #define IDM_SUBMENU_GAME      1000
@@ -102,13 +103,37 @@
 #define STR_KEY_SPACE    31
 #define STR_BACKGRND     32
 #define STR_FRAME_CTRL   33
-#define NUM_STRINGS      34
+#define STR_KEYMAPPING   34
+#define STR_ACT_LEFT     35
+#define STR_ACT_RIGHT    36
+#define STR_ACT_THRUST   37
+#define STR_ACT_FIRE     38
+#define NUM_STRINGS      39
 
 extern int current_lang;
 extern const char *lang_strings[6][NUM_STRINGS];
 #define tr(id) ((char*)lang_strings[current_lang][(id)])
 
 void set_language(HWND hMenu, int lang);
+
+/* keyboard / mouse / joystick control (KEYMAP.C) */
+#define KM_ACTIONS  4
+#define ACT_LEFT    0
+#define ACT_RIGHT   1
+#define ACT_THRUST  2
+#define ACT_FIRE    3
+typedef struct { int scan, vk, chr; } KMKEY;    /* scan code polled; vk/chr shown */
+void km_init(void);                 /* open the joystick driver            */
+void km_done(void);                 /* close it, show the pointer again    */
+void km_tick(HWND hwnd);            /* sample mouse and joystick, per tick */
+int  km_action_down(int act);       /* is the action asked for right now?  */
+void km_mouse_button(int btn, int down);
+void km_pointer_show(void);
+void km_dialog(HWND owner);         /* the Key Mapping... dialog           */
+void km_keyname(const KMKEY *k, char *out);
+void km_legend(int act, char *out);
+void km_save(FILE *f);
+void km_load(FILE *f);
 
 #define GONIO_PRECISION 1024L //precission of gonio tables
 

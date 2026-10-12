@@ -1,3 +1,17 @@
+1.04 (2026-10-09)
+- Added Options - Key Mapping... (notebook with Keyboard, Mouse and
+  Joystick tabs): every action (turn left, turn right, thrust, fire)
+  has a text box; click it and press the key, click it again with a
+  mouse button or press an arrow key (mouse), or press a joystick
+  button / move the stick (joystick); Delete clears a mouse or joystick box
+- Added mouse control (pointer movement and buttons) and joystick
+  support through the GAME$ driver, with Calibrate A / Calibrate B
+- The key legend on the intro screen shows the keys you chose
+- Key, mouse and joystick mappings are saved in Driftos2.cfg
+  (settings files from older versions still load)
+- Added Ctrl+N (Play, new game) and Ctrl+Q (Quit game)
+- BLDLEVEL and About box updated to 1.04
+
 1.03 (2026-09-09)
 - Compiled with Open Watcom C/C++ (wcc386)
 - Added Ctrl+X accelerator to exit the game immediately

@@ -17,7 +17,7 @@ RCFLAGS = -bt=os2 -zm &
           -i=$(OS2TK)\h &
           -i=src
 
-OBJS   = bin\drift.obj bin\objekts.obj bin\llist.obj bin\common.obj
+OBJS   = bin\drift.obj bin\objekts.obj bin\llist.obj bin\common.obj bin\keymap.obj
 TARGET = bin\driftos2.exe
 
 all : $(TARGET) .SYMBOLIC
@@ -45,7 +45,10 @@ bin\llist.obj   : src\llist.c src\drift.h src\llist.h src\resource.h
 bin\common.obj  : src\common.c src\common.h
     $(CC) $(CFLAGS) -fo=bin\common.obj src\common.c
 
+bin\keymap.obj  : src\keymap.c src\drift.h src\resource.h src\joyos2.h
+    $(CC) $(CFLAGS) -fo=bin\keymap.obj src\keymap.c
+
 clean : .SYMBOLIC
-    -del bin\drift.obj bin\objekts.obj bin\llist.obj bin\common.obj 2>nul
+    -del bin\drift.obj bin\objekts.obj bin\llist.obj bin\common.obj bin\keymap.obj 2>nul
     -del bin\drift.res 2>nul
     -del bin\driftos2.exe bin\driftos2.map 2>nul

@@ -1,4 +1,4 @@
-     D R I F T  For OS/2 Version 1.03  Readme.txt
+     D R I F T  For OS/2 Version 1.04  Readme.txt
      -----------------------------------------------
 
 == 1. Drift Overview ==

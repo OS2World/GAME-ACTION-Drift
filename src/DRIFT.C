@@ -8,14 +8,14 @@
 
 /* BLDLEVEL string — read by bldlevel.exe on OS/2 */
 static const char bldlevel[] =
-    "@#Dirk Vandenheuvel:1.03#@##1## 09 Sep 2026 12:00:00      "
+    "@#Dirk Vandenheuvel:1.04#@##1## 09 Oct 2026 12:00:00      "
     "ARCAOS:::0::::@@Drift for OS/2 - Space shoot em up game\r\n\x1a";
 
 int current_lang = LANG_EN;
 
 const char *lang_strings[6][NUM_STRINGS] = {
     { /* LANG_EN */
-        "~Game", "~Play", "~Pause Game\tCtrl+P", "~Quit game", "E~xit\tCtrl+X",
+        "~Game", "~Play\tCtrl+N", "~Pause Game\tCtrl+P", "~Quit game\tCtrl+Q", "E~xit\tCtrl+X",
         "~Options", "~Detail", "~High", "~Medium", "~Low",
         "~Language", "~Save settings on exit", "~Help", "~About...",
         "sattelite madness", "Go Polygunzz", "Asteroid factory",
@@ -31,10 +31,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "RIGHT              Turn right",
         "SPACE            Fire missile",
         "~Background Run\tCtrl+B",
-        "~Frame Controls\tCtrl+F"
+        "~Frame Controls\tCtrl+F",
+        "~Key Mapping...",
+        "Turn Left", "Turn Right", "Thrust", "Fire"
     },
     { /* LANG_ES */
-        "~Juego", "~Jugar", "~Pausar Juego\tCtrl+P", "~Salir del juego", "~Salir\tCtrl+X",
+        "~Juego", "~Jugar\tCtrl+N", "~Pausar Juego\tCtrl+P", "~Salir del juego\tCtrl+Q", "~Salir\tCtrl+X",
         "~Opciones", "~Detalle", "~Alto", "~Medio", "~Bajo",
         "~Idioma", "~Guardar ajustes al salir", "~Ayuda", "~About...",
         "locura satelital", "Vamos Polygunzz", "Fabrica de asteroides",
@@ -50,10 +52,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "DERECHA            Girar der.",
         "ESPACIO              Disparar",
         "~Fondo Activo\tCtrl+B",
-        "~Marco\tCtrl+F"
+        "~Marco\tCtrl+F",
+        "~Asignacion de teclas...",
+        "Girar izquierda", "Girar derecha", "Empuje", "Disparar"
     },
     { /* LANG_NL */
-        "~Spel", "~Spelen", "~Pauze Spel\tCtrl+P", "Spel ~verlaten", "~Afsluiten\tCtrl+X",
+        "~Spel", "~Spelen\tCtrl+N", "~Pauze Spel\tCtrl+P", "Spel ~verlaten\tCtrl+Q", "~Afsluiten\tCtrl+X",
         "~Opties", "~Detail", "~Hoog", "~Middel", "~Laag",
         "~Taal", "~Instellingen opslaan bij afsluiten", "~Help", "~About...",
         "satelliet waanzin", "Ga Polygunzz", "Asteroide fabriek",
@@ -69,10 +73,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "RECHTS           Rechts draaien",
         "SPATIE               Vuur raket",
         "~Achtergrond\tCtrl+B",
-        "~Frame besturing\tCtrl+F"
+        "~Frame besturing\tCtrl+F",
+        "Toetsen ~toewijzen...",
+        "Links draaien", "Rechts draaien", "Stuwkracht", "Vuur"
     },
     { /* LANG_DE */
-        "~Spiel", "~Spielen", "~Pause Spiel\tCtrl+P", "Spiel ~beenden", "~Beenden\tCtrl+X",
+        "~Spiel", "~Spielen\tCtrl+N", "~Pause Spiel\tCtrl+P", "Spiel ~beenden\tCtrl+Q", "~Beenden\tCtrl+X",
         "~Optionen", "~Detail", "~Hoch", "~Mittel", "~Niedrig",
         "~Sprache", "~Einstellungen beim Beenden speichern", "~Hilfe", "~About...",
         "Satelliten-Wahnsinn", "Los Polygunzz", "Asteroiden-Fabrik",
@@ -88,10 +94,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "RECHTS            Rechts drehen",
         "LEERTASTE               Feuer",
         "~Hintergrundlauf\tCtrl+B",
-        "~Rahmensteuerung\tCtrl+F"
+        "~Rahmensteuerung\tCtrl+F",
+        "T~astenzuordnung...",
+        "Links drehen", "Rechts drehen", "Schub", "Feuer"
     },
     { /* LANG_FR */
-        "~Jeu", "~Jouer", "~Pause Jeu\tCtrl+P", "~Quitter le jeu", "~Quitter\tCtrl+X",
+        "~Jeu", "~Jouer\tCtrl+N", "~Pause Jeu\tCtrl+P", "~Quitter le jeu\tCtrl+Q", "~Quitter\tCtrl+X",
         "~Options", "~Detail", "~Haut", "~Moyen", "~Bas",
         "~Langue", "~Sauvegarder les reglages a la sortie", "~Aide", "~About...",
         "folie des satellites", "Allez les Polygunzz", "Usine a asteroides",
@@ -107,10 +115,12 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "DROITE             Tourner droite",
         "ESPACE              Tirer missile",
         "~Arriere-plan Actif\tCtrl+B",
-        "~Cadre\tCtrl+F"
+        "~Cadre\tCtrl+F",
+        "~Affectation des touches...",
+        "Tourner a gauche", "Tourner a droite", "Poussee", "Tirer"
     },
     { /* LANG_IT */
-        "~Gioco", "~Gioca", "~Pausa Gioco\tCtrl+P", "~Esci dal gioco", "Es~ci\tCtrl+X",
+        "~Gioco", "~Gioca\tCtrl+N", "~Pausa Gioco\tCtrl+P", "~Esci dal gioco\tCtrl+Q", "Es~ci\tCtrl+X",
         "~Opzioni", "~Dettaglio", "~Alta", "~Media", "~Bassa",
         "~Lingua", "~Salva impostazioni all'uscita", "~Aiuto", "~About...",
         "follia satellitare", "Forza Polygunzz", "Fabbrica di asteroidi",
@@ -126,7 +136,9 @@ const char *lang_strings[6][NUM_STRINGS] = {
         "DESTRA               Svolta destra",
         "SPAZIO              Lancia missile",
         "~Sfondo Attivo\tCtrl+B",
-        "~Controlli Cornice\tCtrl+F"
+        "~Controlli Cornice\tCtrl+F",
+        "~Assegnazione tasti...",
+        "Gira a sinistra", "Gira a destra", "Spinta", "Spara"
     }
 };
 
@@ -171,6 +183,7 @@ void set_language(HWND hMenu, int lang)
         menu_set_text(hOptions, IDM_SAVEONEXIT,    tr(STR_SAVEONEXIT));
         menu_set_text(hOptions, IDM_BACKGRND,      tr(STR_BACKGRND));
         menu_set_text(hOptions, IDM_FRAME_CTRL,    tr(STR_FRAME_CTRL));
+        menu_set_text(hOptions, IDM_KEYMAPPING,    tr(STR_KEYMAPPING));
         if (hDetail) {
             menu_set_text(hDetail, IDM_HIGHDET,   tr(STR_DETAIL_HIGH));
             menu_set_text(hDetail, IDM_MEDIUMDET, tr(STR_DETAIL_MEDIUM));
@@ -318,6 +331,7 @@ while (WinGetMsg(hab,&qmsg,NULLHANDLE,0,0))
 save_hiscores();
 if (saveonexit)
   save_settings();
+km_done();
 free_all();
 free_demo();
 WinStopTimer(hab,hwndClient,idTimer);
@@ -408,6 +422,7 @@ switch (messg)
             // uncheck save on exit
             stat = WinCheckMenuItem(hMenu,IDM_SAVEONEXIT,FALSE);
 						load_settings();
+						km_init();
 						// check to correct menu item detaillevel
 						stat = WinCheckMenuItem(hMenu,detaillevel,TRUE);
             if (saveonexit)
@@ -440,6 +455,7 @@ switch (messg)
 						set_language(hMenu, current_lang);
 						break;
 		 case WM_TIMER:
+						km_tick(hwnd);
 						hps = WinGetPS(hwnd) ;
             sizel.cx = 2000 ;
             sizel.cy = 2000 ;
@@ -490,10 +506,12 @@ switch (messg)
                             insert_message(1800,0,"%s",tr(STR_DRIFT_TITLE));
                             insert_message(1600,0,"%s",tr(STR_DRIFT_BY));
                             insert_message(1400,0,"%s",tr(STR_KEYS));
-                            insert_message(1200,0,"%s",tr(STR_KEY_UP));
-                            insert_message(1100,0,"%s",tr(STR_KEY_LEFT));
-                            insert_message(1000,0,"%s",tr(STR_KEY_RIGHT));
-                            insert_message(900,0,"%s",tr(STR_KEY_SPACE));
+                            { char leg[48];
+                              km_legend(ACT_THRUST, leg); insert_message(1200,0,"%s",leg);
+                              km_legend(ACT_LEFT,   leg); insert_message(1100,0,"%s",leg);
+                              km_legend(ACT_RIGHT,  leg); insert_message(1000,0,"%s",leg);
+                              km_legend(ACT_FIRE,   leg); insert_message(900,0,"%s",leg);
+                            }
                             }
                           WinInvalidateRect(hwnd,NULL,TRUE);
 													}
@@ -520,6 +538,13 @@ switch (messg)
 							}
                WinReleasePS(hps);
                break;
+		 case WM_BUTTON1DOWN: case WM_BUTTON2DOWN: case WM_BUTTON3DOWN:
+		 case WM_BUTTON1UP:   case WM_BUTTON2UP:   case WM_BUTTON3UP:
+						km_mouse_button((messg - WM_BUTTON1DOWN) / 3,
+														((messg - WM_BUTTON1DOWN) % 3) == 0);
+						if (km_mouse_on_game())
+							return (MRESULT)TRUE;
+						return(WinDefWindowProc(hwnd,messg,mp1,mp2));
 		 case WM_SYSCOMMAND:
 							/*switch(mp1)
 								{
@@ -532,6 +557,7 @@ switch (messg)
 								break;
 		 case WM_SETFOCUS:
 								if (!SHORT1FROMMP(mp2)) { /* losing focus */
+									km_pointer_show();
 									if (!bBackgrndRun && game_status == GAME_PLAYING && !game_pauze) {
 										WinStopTimer(hab, hwndClient, idTimer);
 										game_pauze = TRUE;
@@ -603,6 +629,7 @@ switch (messg)
 									case IDM_PAUZE:
 															if (game_status != GAME_PLAYING)
 																break;
+															km_pointer_show();
 															if (game_pauze != TRUE)
 																{
                                 WinStopTimer(hab,hwndClient,idTimer);
@@ -619,6 +646,7 @@ switch (messg)
 																}
 															break;
 									case IDM_QUIT:
+															km_pointer_show();
 															stat = WinEnableMenuItem(hMenu,IDM_PLAY,TRUE);
 															stat = WinEnableMenuItem(hMenu,IDM_QUIT,FALSE);
 															stat = WinEnableMenuItem(hMenu,IDM_PAUZE,FALSE);
@@ -660,6 +688,16 @@ switch (messg)
 									case IDM_EXIT:
 																WinPostMsg(hwnd, WM_QUIT, 0, 0);
 																break;
+									case IDM_KEYMAPPING:
+															{
+															BOOL wasPlaying = (game_status == GAME_PLAYING && !game_pauze);
+															if (wasPlaying)
+																WinSendMsg(hwnd, WM_COMMAND, MPFROMSHORT(IDM_PAUZE), MPFROM2SHORT(CMDSRC_OTHER, FALSE));
+															km_dialog(hwnd);
+															if (wasPlaying)
+																WinSendMsg(hwnd, WM_COMMAND, MPFROMSHORT(IDM_PAUZE), MPFROM2SHORT(CMDSRC_OTHER, FALSE));
+															}
+															break;
 									case IDM_LANG_EN: set_language(hMenu, LANG_EN); break;
 									case IDM_LANG_ES: set_language(hMenu, LANG_ES); break;
 									case IDM_LANG_NL: set_language(hMenu, LANG_NL); break;
@@ -933,18 +971,12 @@ int count;
 int tmpangle;
 if (game_status != GAME_PLAYING || input_enabled == FALSE)
 	 return;
-// this routine checks the keys async.
-key = 0x63; //VK_LEFT;
-state = WinGetPhysKeyState (HWND_DESKTOP,key);
-if (state & 0x8000)  // key is down
+// this routine checks the keys, mouse and joystick every tick
+if (km_action_down(ACT_LEFT))
 	  ship->angle += game_turning;
-key = 0x64; // VK_RIGHT
-state = WinGetPhysKeyState (HWND_DESKTOP,key);
-if (state & 0x8000)
+if (km_action_down(ACT_RIGHT))
 	 ship->angle -= game_turning;
-key = 0x61; // VK_UP
-state = WinGetPhysKeyState (HWND_DESKTOP,key); // increase thrust
-if (state & 0x8000)
+if (km_action_down(ACT_THRUST))
 	{
 	 thrust_objekt(ship,THRUSTPOWER);
 	 // now insert some thrust pixels in the OBJEKT llist
@@ -954,11 +986,9 @@ if (state & 0x8000)
 			 add_list(init_objekt(OT_THRUST,ship->current.x,ship->current.y, tmpangle, random(10)+MAXTHRUST, DT_PIXEL, random(4)+3, CLR_WHITE, pixeldata, 1),&effekts);
 		 }
 	}
-key = 0x39; // VK_SPACE
-state = WinGetPhysKeyState (HWND_DESKTOP,key); //shoot
-if (state & 0x8000)
+if (km_action_down(ACT_FIRE)) //shoot
 	{
-	if (game_shooting == 0)  // ok you can shoot
+if (game_shooting == 0)  // ok you can shoot
 		{
 		if (game_shots == 1)
 			{
@@ -1047,6 +1077,7 @@ fread(&saveonexit,sizeof(int),1,CfgFile);
 fread(&detaillevel,sizeof(int),1,CfgFile);
 fread(&current_lang,sizeof(int),1,CfgFile); /* may fail on old cfg - ignore */
 if (current_lang < LANG_EN || current_lang > LANG_IT) current_lang = LANG_EN;
+km_load(CfgFile);   /* key / mouse / joystick mappings (absent in old files) */
 fclose(CfgFile);
 }
 
@@ -1058,6 +1089,7 @@ if ((CfgFile = fopen("Driftos2.cfg","wb")) == NULL)
 fwrite(&saveonexit,sizeof(int),1,CfgFile);
 fwrite(&detaillevel,sizeof(int),1,CfgFile);
 fwrite(&current_lang,sizeof(int),1,CfgFile);
+km_save(CfgFile);
 fclose(CfgFile);
 }
 

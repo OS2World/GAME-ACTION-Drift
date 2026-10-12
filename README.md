@@ -7,7 +7,7 @@ Original version 1.02beta by Dirk Vandenheuvel (1995).
 
 ## Version
 
-1.03 (OpenWatcom build, 2026)
+1.04 (OpenWatcom build, 2026)
 
 ## License
 
@@ -22,6 +22,21 @@ compile-wat.cmd
 ```
 
 This runs `wmake clean` then `wmake all`. Output goes to `bin\`.
+
+## Changes in 1.04
+
+- New Options - Key Mapping... window (Keyboard, Mouse and Joystick tabs):
+  every action (turn left, turn right, thrust, fire) has a text box where
+  you map the key, the mouse button / pointer movement, or the joystick
+  button / axis
+- Mouse control: pointer movement and buttons (the pointer is hidden and
+  re-centred while playing)
+- Joystick support through the GAME$ driver, with Calibrate A and
+  Calibrate B
+- The key legend of the intro screen shows the keys you chose
+- Mappings are saved in `Driftos2.cfg` (older files still load)
+- Ctrl+N starts a new game, Ctrl+Q quits the current game
+- BLDLEVEL string and About box show version 1.04
 
 ## Changes in 1.03
 

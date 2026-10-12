@@ -8,9 +8,9 @@ MENU ID_RESOURCE
 BEGIN
     SUBMENU "~Game", IDM_SUBMENU_GAME
     BEGIN
-        MENUITEM "~Play",              IDM_PLAY
+        MENUITEM "~Play\tCtrl+N",       IDM_PLAY
         MENUITEM "~Pause Game\tCtrl+P", IDM_PAUZE,  MIS_TEXT, MIA_DISABLED
-        MENUITEM "~Quit game",         IDM_QUIT,   MIS_TEXT, MIA_DISABLED
+        MENUITEM "~Quit game\tCtrl+Q",   IDM_QUIT,   MIS_TEXT, MIA_DISABLED
         MENUITEM SEPARATOR
         MENUITEM "E~xit\tCtrl+X",      IDM_EXIT
     END
@@ -22,6 +22,7 @@ BEGIN
             MENUITEM "~Medium",            IDM_MEDIUMDET
             MENUITEM "~Low",               IDM_LOWDET
         END
+        MENUITEM "~Key Mapping...",    IDM_KEYMAPPING
         MENUITEM SEPARATOR
         SUBMENU "~Language", IDM_SUBMENU_LANGUAGE
         BEGIN
@@ -46,6 +47,10 @@ END
 
 ACCELTABLE ID_RESOURCE
 BEGIN
+    "n",  IDM_PLAY,    CONTROL
+    "N",  IDM_PLAY,    CONTROL
+    "q",  IDM_QUIT,    CONTROL
+    "Q",  IDM_QUIT,    CONTROL
     "x",  IDM_EXIT,    CONTROL
     "X",  IDM_EXIT,    CONTROL
     "p",  IDM_PAUZE,      CONTROL
@@ -74,11 +79,83 @@ BEGIN
     DIALOG "About Drift", IDD_ABOUT, 32, 24, 240, 110,, FCF_TITLEBAR|FCF_DLGBORDER
     BEGIN
         CTEXT "Drift for OS/2",              -1, 10, 90, 220, 8
-        CTEXT "Version 1.03",               -1, 10, 78, 220, 8
+        CTEXT "Version 1.04",               -1, 10, 78, 220, 8
         CTEXT "OpenWatcom Release",         -1, 10, 66, 220, 8
         CTEXT "(c) 1995, Dirk Vandenheuvel",-1, 10, 54, 220, 8
         CTEXT "(c) 2026, OS2World",         -1, 10, 42, 220, 8
         CTEXT "GNU GPL V3",                 -1, 10, 30, 220, 8
         DEFPUSHBUTTON "Close" DID_OK,           98, 10, 44, 14, WS_GROUP
+    END
+END
+
+/* ---- Key Mapping: main dialog (notebook container) ---- */
+DLGTEMPLATE IDD_KEYMAPPING LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "Key Mapping", IDD_KEYMAPPING, 30, 30, 242, 200,
+        FS_NOBYTEALIGN|FS_DLGBORDER|WS_VISIBLE|WS_SAVEBITS,
+        FCF_TITLEBAR
+    BEGIN
+        PUSHBUTTON "Ok",     DID_OK,      62,  4, 44, 14, WS_GROUP
+        PUSHBUTTON "Cancel", DID_CANCEL, 120,  4, 44, 14
+    END
+END
+
+/* ---- Key Mapping: Keyboard tab page ---- */
+DLGTEMPLATE IDD_KM_KEYBOARD LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "", IDD_KM_KEYBOARD, 0, 0, 200, 110, WS_VISIBLE
+    BEGIN
+        CTEXT "Click a box, then press the key", IDC_KM_HINT1, 4, 98, 192, 8
+        CTEXT "to use for the action.",          IDC_KM_HINT2, 4, 88, 192, 8
+        LTEXT "", IDC_KM_KL1+0, 8, 72, 80, 8
+        ENTRYFIELD "", IDC_KM_KBD1+0, 92, 70, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP | WS_GROUP
+        LTEXT "", IDC_KM_KL1+1, 8, 56, 80, 8
+        ENTRYFIELD "", IDC_KM_KBD1+1, 92, 54, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        LTEXT "", IDC_KM_KL1+2, 8, 40, 80, 8
+        ENTRYFIELD "", IDC_KM_KBD1+2, 92, 38, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        LTEXT "", IDC_KM_KL1+3, 8, 24, 80, 8
+        ENTRYFIELD "", IDC_KM_KBD1+3, 92, 22, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+    END
+END
+
+/* ---- Key Mapping: Mouse tab page ---- */
+DLGTEMPLATE IDD_KM_MOUSE LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "", IDD_KM_MOUSE, 0, 0, 200, 126, WS_VISIBLE
+    BEGIN
+        AUTOCHECKBOX "Enable Mouse Control", IDC_KM_MOUSE_EN, 8, 108, 184, 12, WS_GROUP
+        LTEXT "", IDC_KM_ML1+0, 8, 92, 80, 8
+        ENTRYFIELD "", IDC_KM_MBTN1+0, 92, 90, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP | WS_GROUP
+        LTEXT "", IDC_KM_ML1+1, 8, 76, 80, 8
+        ENTRYFIELD "", IDC_KM_MBTN1+1, 92, 74, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        LTEXT "", IDC_KM_ML1+2, 8, 60, 80, 8
+        ENTRYFIELD "", IDC_KM_MBTN1+2, 92, 58, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        LTEXT "", IDC_KM_ML1+3, 8, 44, 80, 8
+        ENTRYFIELD "", IDC_KM_MBTN1+3, 92, 42, 96, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        CTEXT "Click a box, then click it again with a mouse button,", IDC_KM_HINT1, 4, 22, 192, 8
+        CTEXT "or press an arrow key (Delete clears).",                IDC_KM_HINT2, 4, 12, 192, 8
+    END
+END
+
+/* ---- Key Mapping: Joystick tab page ---- */
+DLGTEMPLATE IDD_KM_JOYSTICK LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "", IDD_KM_JOYSTICK, 0, 0, 200, 146, WS_VISIBLE
+    BEGIN
+        AUTOCHECKBOX "~Enable Joystick", IDC_KM_JOY_EN, 4, 130, 120, 12, WS_GROUP
+        AUTORADIOBUTTON "Joystick ~A", IDC_KM_JOY_A, 16, 116, 74, 11, WS_GROUP
+        AUTORADIOBUTTON "Joystick ~B", IDC_KM_JOY_B, 94, 116, 74, 11
+        CTEXT "Click a box, then press a joystick button", IDC_KM_HINT1, 4, 102, 192, 8, WS_GROUP
+        CTEXT "or move the stick (Delete clears).",        IDC_KM_HINT2, 4,  92, 192, 8
+        LTEXT "", IDC_KM_JL1+0, 4, 78, 82, 8
+        ENTRYFIELD "", IDC_KM_JBTN1+0, 90, 76, 100, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP | WS_GROUP
+        LTEXT "", IDC_KM_JL1+1, 4, 62, 82, 8
+        ENTRYFIELD "", IDC_KM_JBTN1+1, 90, 60, 100, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        LTEXT "", IDC_KM_JL1+2, 4, 46, 82, 8
+        ENTRYFIELD "", IDC_KM_JBTN1+2, 90, 44, 100, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        LTEXT "", IDC_KM_JL1+3, 4, 30, 82, 8
+        ENTRYFIELD "", IDC_KM_JBTN1+3, 90, 28, 100, 12, ES_MARGIN | ES_READONLY | WS_TABSTOP
+        PUSHBUTTON "Calibrate ~A", IDC_KM_CAL,   4, 4, 70, 14, WS_GROUP
+        PUSHBUTTON "Calibrate ~B", IDC_KM_CALB, 80, 4, 70, 14
     END
 END
